@@ -6,6 +6,7 @@ public class PrimeNumbersTask implements Runnable {
 
 	private List<Integer> primes = new ArrayList<Integer>();
 	private Integer lastNumberChecked;
+	private Integer lastNumberRetrieved = 0;
 	private NumberChecker checker;
 	private Boolean finished;
 
@@ -33,13 +34,14 @@ public class PrimeNumbersTask implements Runnable {
 	}
 
 	public Integer getNextNumber() {
-		synchronized (this) {
-			if (primes.size() >0) {
-				return primes.remove(0);
+			if (primes.size() > lastNumberRetrieved) {
+				//doesn't need to be syncrhonized as not amending code
+				lastNumberRetrieved++;
+				return primes.get(lastNumberRetrieved-1);
 			}
 			else return null;
 		}
-	}
+	
 
 	@Override
 	public void run() {

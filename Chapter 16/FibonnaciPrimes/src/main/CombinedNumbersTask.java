@@ -48,10 +48,10 @@ public class CombinedNumbersTask implements Runnable {
 		finished = false;
 		
 		while (!finished) {
-			Integer prime = primeNumbersTask.getNextNumber();
-			if (prime != null) primes.add(prime);
-			Integer fib = fibonnaciNumbersTask.getNextNumber();
-			if (fib != null) fibonnacis.add(fib);
+			int prime = primeNumbersTask.getNextNumber();
+			if (prime != 0) primes.add(prime);
+			int fib = fibonnaciNumbersTask.getNextNumber();
+			if (fib != 0) fibonnacis.add(fib);
 			
 			synchronized (this) {
 				combined = new ArrayList<>(primes);
